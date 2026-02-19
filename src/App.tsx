@@ -6,7 +6,7 @@ import * as THREE from 'three'
 import './App.css'
 
 function Model(props: any) {
-  const { scene } = useGLTF('/models/speakerman_cross_effect.glb')
+  const { scene } = useGLTF('/models/black_tie.glb')
 
   scene.traverse((child: any) => {
     if (child.isMesh) {
@@ -40,9 +40,11 @@ function NeonScene() {
 
 export default function App() {
   return (
-    <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 5], fov: 45 }} style={{ position: "absolute", top: 0, left: 0, width: "100vw", height: "100vh" }}>
-      {/* 1. Solid black background */}
-      <color attach="background" args={['#000000']} />
+    <Canvas dpr={[1, 2]} camera={{ position: [0, 1, 5], fov: 45 }}
+      style={{
+        position: "absolute", top: 0, left: 0, width: "100vw", height: "100vh",
+        background: "radial-gradient(circle at center, #0c0b0bff 0%, #050505 100%)"
+      }}>
 
       <Environment preset="night" blur={0.8} />
 
@@ -61,6 +63,7 @@ export default function App() {
       </Suspense>
 
       {/* 3. Added OrbitControls to let you drag/rotate the camera with your mouse */}
+      <gridHelper args={[50, 50, '#444444', '#222222']} position={[0, -2, 0]} />
       <OrbitControls makeDefault />
     </Canvas>
   )

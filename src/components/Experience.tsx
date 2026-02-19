@@ -12,7 +12,7 @@ export const Experience = () => {
 
             <Model position={[0, -1, 0]} scale={2} />
 
-            <ContactShadows resolution={1024} scale={10} blur={1} opacity={0.5} far={10} color="#000000" />
+            <ContactShadows resolution={1024} scale={10} blur={1} opacity={0.5} far={10} color="#ffffffff" />
 
             <OrbitControls makeDefault />
             <Environment preset="city" />
