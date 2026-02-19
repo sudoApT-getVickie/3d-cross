@@ -1,39 +1,44 @@
-import { useRef, Suspense } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { useGLTF, Environment, Float, OrbitControls } from '@react-three/drei'
-import { EffectComposer, Bloom } from '@react-three/postprocessing'
-import * as THREE from 'three'
+import { Suspense, useEffect } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { useGLTF, OrbitControls, Stage } from '@react-three/drei'
+
 import './App.css'
 
 function Model(props: any) {
-  const { scene } = useGLTF('/models/black_tie.glb')
+  const { scene } = useGLTF('/models/black_tie_1k.glb')
 
-  scene.traverse((child: any) => {
-    if (child.isMesh) {
-      child.material.emissive = new THREE.Color("#ff0000")
-      child.material.emissiveIntensity = 2
-      child.material.toneMapped = false
+  useEffect(() => {
+    if (scene) {
+      console.log('Model Scene Loaded:', scene)
+      // Log all meshes to verify they are loaded
+      scene.traverse((child) => {
+        if ((child as any).isMesh) {
+          console.log('Found mesh:', child.name)
+        }
+      })
     }
-  })
+  }, [scene])
 
-  return <primitive object={scene} {...props} />
+  return (
+    <group {...props}>
+      <primitive object={scene} />
+      {/* Box helper for debugging - FORCE VISIBILITY */}
+      <boxHelper args={[scene, 0xffff00]} />
+      {/* Small blue cube at 0,0,0 to mark model origin */}
+      <mesh>
+        <boxGeometry args={[0.2, 0.2, 0.2]} />
+        <meshBasicMaterial color="blue" wireframe />
+      </mesh>
+    </group>
+  )
 }
 
 function NeonScene() {
-  const groupRef = useRef<THREE.Group>(null)
-
-  useFrame((_, delta) => {
-    if (groupRef.current) {
-      // Optional: Keeps the ominous slow rotation
-      groupRef.current.rotation.y += delta * 0.2
-    }
-  })
-
   return (
-    <group ref={groupRef}>
-      <Float speed={2} rotationIntensity={0.5} floatIntensity={1.5}>
-        <Model scale={0.1} />
-      </Float>
+    <group>
+      <Stage intensity={1} environment="city" adjustCamera>
+        <Model />
+      </Stage>
     </group>
   )
 }
@@ -46,24 +51,18 @@ export default function App() {
         background: "radial-gradient(circle at center, #0c0b0bff 0%, #050505 100%)"
       }}>
 
-      <Environment preset="night" blur={0.8} />
-
-      {/* 2. Retained the Bloom for the Neon effect */}
-      <EffectComposer enableNormalPass={false}>
-        <Bloom
-          luminanceThreshold={1}
-          mipmapBlur
-          intensity={1.5}
-          radius={0.6}
-        />
-      </EffectComposer>
-
       <Suspense fallback={null}>
         <NeonScene />
       </Suspense>
 
-      {/* 3. Added OrbitControls to let you drag/rotate the camera with your mouse */}
+      {/* Red Cube Sanity Check - Outside Stage so it stays at absolute position */}
+      <mesh position={[2, 0, 0]}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color="red" />
+      </mesh>
+
       <gridHelper args={[50, 50, '#444444', '#222222']} position={[0, -2, 0]} />
+      <axesHelper args={[5]} />
       <OrbitControls makeDefault />
     </Canvas>
   )
