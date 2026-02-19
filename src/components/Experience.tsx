@@ -10,7 +10,7 @@ export const Experience = () => {
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 5]} intensity={1.5} castShadow shadow-mapSize={1024} />
 
-            <Model position={[0, -1, 0]} scale={2} />
+            <Model position={[0, 0, 0]} scale={0.7} />
 
             <ContactShadows resolution={1024} scale={10} blur={1} opacity={0.5} far={10} color="#ffffffff" />
 

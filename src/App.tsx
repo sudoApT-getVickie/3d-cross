@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from 'react'
+import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { useGLTF, OrbitControls, Stage } from '@react-three/drei'
 
@@ -6,31 +6,7 @@ import './App.css'
 
 function Model(props: any) {
   const { scene } = useGLTF('/models/black_tie_1k.glb')
-
-  useEffect(() => {
-    if (scene) {
-      console.log('Model Scene Loaded:', scene)
-      // Log all meshes to verify they are loaded
-      scene.traverse((child) => {
-        if ((child as any).isMesh) {
-          console.log('Found mesh:', child.name)
-        }
-      })
-    }
-  }, [scene])
-
-  return (
-    <group {...props}>
-      <primitive object={scene} />
-      {/* Box helper for debugging - FORCE VISIBILITY */}
-      <boxHelper args={[scene, 0xffff00]} />
-      {/* Small blue cube at 0,0,0 to mark model origin */}
-      <mesh>
-        <boxGeometry args={[0.2, 0.2, 0.2]} />
-        <meshBasicMaterial color="blue" wireframe />
-      </mesh>
-    </group>
-  )
+  return <primitive object={scene} {...props} />
 }
 
 function NeonScene() {
@@ -55,14 +31,6 @@ export default function App() {
         <NeonScene />
       </Suspense>
 
-      {/* Red Cube Sanity Check - Outside Stage so it stays at absolute position */}
-      <mesh position={[2, 0, 0]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color="red" />
-      </mesh>
-
-      <gridHelper args={[50, 50, '#444444', '#222222']} position={[0, -2, 0]} />
-      <axesHelper args={[5]} />
       <OrbitControls makeDefault />
     </Canvas>
   )
