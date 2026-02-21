@@ -1,32 +1,312 @@
-/* Main App Container */
-.app-container {
+:root {
+  --bg-dark: #252525;
+  --text-cream: #FFE3B3;
+  --accent-peach: #FFB173;
+  --accent-coral: #FF6766;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+}
+
+.app-layout {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-dark);
+  color: var(--text-cream);
+  font-family: 'Inter', sans-serif;
+}
+
+/* 3D Hero Section */
+.hero-section {
   position: relative;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
-/* 3D Canvas Layer */
-.canvas-container {
+.hero-section canvas {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   z-index: 0;
 }
 
-/* UI Overlay Layer */
-.ui-shell {
+.hero-ui {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   z-index: 10;
-  /* Let mouse events pass through to the 3D canvas */
   pointer-events: none;
   display: flex;
   flex-direction: column;
-  padding: 2.5rem 5vw;
-  box-sizing: border-box;
+  justify-content: center;
+  padding-left: 10vw;
+}
+
+.hero-ui h1 {
+  font-size: 8rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--text-cream);
+  line-height: 0.9;
+}
+
+.hero-ui h2 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin: 0;
+  color: var(--accent-peach);
+  opacity: 0.9;
+}
+
+/* Content Sections */
+.content-section {
+  position: relative;
+  z-index: 10;
+  min-height: 50vh;
+  padding: 8rem 10vw;
+  background-color: var(--bg-dark);
+}
+
+.content-section h2 {
+  font-size: 3rem;
+  color: var(--accent-coral);
+  margin-bottom: 2rem;
+}
+
+/* Project Grid Layout */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+/* Individual Project Card */
+.project-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 2.5rem;
+  border-radius: 12px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-coral);
+}
+
+.project-card h3 {
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+  color: var(--text-cream);
+}
+
+.project-card p {
+  color: #a0a0a0;
+  line-height: 1.6;
+  flex-grow: 1;
+  margin-bottom: 2rem;
+}
+
+/* Tech Stack Tags */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tech-stack span {
+  background: rgba(255, 177, 115, 0.1);
+  color: var(--accent-peach);
+  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* View Link */
+.project-link {
+  color: var(--accent-coral);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.project-link:hover {
+  color: var(--text-cream);
+}
+
+/* Skills Grid Layout */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+/* Individual Skill Category Card */
+.skill-category {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 2.5rem;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.skill-category:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.skill-category h3 {
+  color: var(--text-cream);
+  font-size: 1.35rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 103, 102, 0.2);
+  /* Subtle Coral underline */
+}
+
+/* Skill Tags Container */
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Individual Skill Tag */
+.skill-tags span {
+  background: rgba(202, 40, 81, 0.1);
+  /* Transparent Crimson */
+  color: var(--text-cream);
+  border: 1px solid rgba(202, 40, 81, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.skill-tags span:hover {
+  background: var(--accent-crimson);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(202, 40, 81, 0.3);
+}
+
+/* Contact Section */
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 2rem;
+  /* Less padding at the bottom for the footer */
+  min-height: 60vh;
+}
+
+.contact-container {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-title {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--accent-coral), var(--accent-peach));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contact-text {
+  color: #a0a0a0;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+}
+
+/* Big CTA Button */
+.big-cta {
+  font-size: 1.2rem;
+  padding: 1.2rem 3rem;
+  border-radius: 8px;
+  background-color: transparent;
+  border: 2px solid var(--accent-crimson);
+  color: var(--text-cream);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-bottom: 4rem;
+}
+
+.big-cta:hover {
+  background-color: var(--accent-crimson);
+  box-shadow: 0 15px 30px rgba(202, 40, 81, 0.3);
+  transform: translateY(-3px);
+  color: #fff;
+}
+
+/* Social Links */
+.social-links {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.social-links a {
+  color: var(--text-cream);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: var(--accent-peach);
+}
+
+.social-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--accent-peach);
+  transition: width 0.3s ease;
+}
+
+.social-links a:hover::after {
+  width: 100%;
+}
+
+/* Footer */
+.site-footer {
+  margin-top: auto;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  width: 100%;
+  text-align: center;
+}
+
+.site-footer p {
+  color: #666;
+  font-size: 0.9rem;
+  font-family: monospace;
 }

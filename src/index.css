@@ -24,12 +24,14 @@ html,
 body,
 #root {
   width: 100%;
-  height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  /* Prevents scrollbars from appearing on the hero section */
+  overflow-x: hidden;
+  /* Only hides horizontal scrolling so the page doesn't wobble side-to-side */
 }
+
+/* Prevents scrollbars from appearing on the hero section */
+
 
 body {
   background-color: var(--bg-dark);
