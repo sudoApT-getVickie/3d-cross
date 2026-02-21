@@ -10,24 +10,8 @@ export default function App() {
 
       {/* 2D UI Shell Overlay */}
       <div className="ui-shell">
-        <header>
-          <div className="logo">Victor.</div>
-          <nav>
-            <a href="#work">Work</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-          </nav>
-        </header>
-
-        <main className="hero-content">
-          <h1>Crafting Modern Digital Experiences</h1>
-          <p className="subtitle">
-            Specializing in AI integration, mobile applications,
-            and immersive web development to build solutions that scale.
-          </p>
-          <button className="cta-button">View Projects</button>
-        </main>
       </div>
+
 
       {/* 3D Canvas Background */}
       <div className="canvas-container">

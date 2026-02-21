@@ -1,4 +1,4 @@
-import { OrbitControls, Environment, ContactShadows } from '@react-three/drei'
+import { PresentationControls, Environment, ContactShadows, Float } from '@react-three/drei'
 import { Model } from './Model'
 
 export const Experience = () => {
@@ -35,12 +35,31 @@ export const Experience = () => {
             {/* 5. A cool Crimson accent light shining up from the floor */}
             <pointLight position={[0, -2, 2]} intensity={8} color="#CA2851" />
 
+            <PresentationControls
+                global={false} // Only spins when dragging the model area
+                cursor={true} // Changes the mouse to a grab hand
+                speed={0.9} // How fast it spins
+                zoom={1}
+                rotation={[0, 0, 0]}
+
+                polar={[-Math.PI / 99, Math.PI / 55]}  // Vertical spin limits (up/down)
+                azimuth={[-Math.PI / 4.4, Math.PI / 4.4]}  // Horizontal spin limits (left/right)
+            >
+                <Float
+                    speed={1} // Animation speed
+                    rotationIntensity={0.8} // XYZ rotation intensity
+                    floatIntensity={0.8} // Up/down float intensity
+                >
+                    <Model position={[0, -7, 0]} scale={0.006} />
+                </Float>
+            </PresentationControls>
+
             {/* 1. Push the model down by changing the middle Y value to -2 */}
-            <Model position={[0, -7, 0]} scale={0.006} />
+
 
             {/* 2. Push the shadow down to -2 so it perfectly matches the new floor level */}
             <ContactShadows
-                position={[0, -6, 0]}
+                position={[0, -7, 0]}
                 resolution={1024}
                 scale={10}
                 blur={2.5}
@@ -49,7 +68,6 @@ export const Experience = () => {
                 color="#000000"
             />
 
-            <OrbitControls makeDefault enableZoom={false} />
             <Environment preset="city" />
         </>
     )
