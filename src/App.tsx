@@ -21,17 +21,47 @@ function NeonScene() {
 
 export default function App() {
   return (
-    <Canvas dpr={[1, 2]} camera={{ position: [0, 1, 5], fov: 85 }}
-      style={{
-        position: "absolute", top: 0, left: 0, width: "100vw", height: "100vh",
-        background: "radial-gradient(circle at center, #ab5353ff 0%, #944747ff 100%)"
-      }}>
+    <div className="app-container">
 
-      <Suspense fallback={null}>
-        <NeonScene />
-      </Suspense>
+      {/* 2D UI Shell Overlay */}
+      <div className="ui-shell">
+        <header>
+          <div className="logo">Victor.</div>
+          <nav>
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </header>
 
-      <OrbitControls makeDefault />
-    </Canvas>
+        <main className="hero-content">
+          <h1>Crafting Modern Digital Experiences</h1>
+          <p className="subtitle">
+            Specializing in AI integration, mobile applications, and immersive web development to build solutions that scale.
+          </p>
+          <button className="cta-button">View Projects</button>
+        </main>
+      </div>
+
+      {/* 3D Canvas Background */}
+      <div className="canvas-container">
+        <Canvas
+          dpr={[1, 2]}
+          camera={{ position: [0, 1, 5], fov: 85 }}
+          style={{
+            /* Subtle dark glow utilizing the brand colors */
+            background: "radial-gradient(circle at center, #352026 0%, #252525 100%)"
+          }}
+        >
+          <Suspense fallback={null}>
+            <NeonScene />
+          </Suspense>
+
+          <OrbitControls makeDefault />
+        </Canvas>
+      </div>
+
+    </div>
   )
 }
+
