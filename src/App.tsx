@@ -21,10 +21,10 @@ function NeonScene() {
 
 export default function App() {
   return (
-    <Canvas dpr={[1, 2]} camera={{ position: [0, 1, 5], fov: 45 }}
+    <Canvas dpr={[1, 2]} camera={{ position: [0, 1, 5], fov: 85 }}
       style={{
         position: "absolute", top: 0, left: 0, width: "100vw", height: "100vh",
-        background: "radial-gradient(circle at center, #0c0b0bff 0%, #050505 100%)"
+        background: "radial-gradient(circle at center, #ab5353ff 0%, #944747ff 100%)"
       }}>
 
       <Suspense fallback={null}>

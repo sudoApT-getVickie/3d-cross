@@ -5,12 +5,12 @@ import { Model } from './Model'
 export const Experience = () => {
     return (
         <>
-            <color attach="background" args={['#1a1a1a']} />
+            <color attach="background" args={['#CA2851']} />
 
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 5]} intensity={1.5} castShadow shadow-mapSize={1024} />
 
-            <Model position={[0, 0, 0]} scale={0.7} />
+            <Model position={[0, 0, 0]} scale={0.005} />
 
             <ContactShadows resolution={1024} scale={10} blur={1} opacity={0.5} far={10} color="#ffffffff" />
 
