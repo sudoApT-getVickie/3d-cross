@@ -310,3 +310,143 @@ body {
   font-size: 0.9rem;
   font-family: monospace;
 }
+
+/* --- Custom Loading Screen --- */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--bg-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Smooth fade out when loading is done */
+  transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+
+.loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  max-width: 300px;
+}
+
+.loading-logo {
+  font-size: 2.5rem;
+  color: var(--text-cream);
+  margin-bottom: 2rem;
+  letter-spacing: 4px;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(135deg, var(--accent-coral), var(--accent-peach));
+  transition: width 0.2s ease-out;
+}
+
+.progress-text {
+  color: var(--accent-peach);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* --- Scroll Animations --- */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(40px);
+  visibility: hidden;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, visibility, transform;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
+
+/* --- Mobile Responsiveness (Phones & Tablets) --- */
+@media (max-width: 768px) {
+
+  /* 1. Scale down the Hero Text */
+  .hero-ui {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  .hero-ui h1 {
+    font-size: 18vw;
+    /* Uses viewport width so it always fits perfectly */
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-ui h2 {
+    font-size: 6vw;
+  }
+
+  /* 2. Reduce spacing between sections */
+  .content-section {
+    padding: 4rem 5vw;
+  }
+
+  .content-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* 3. Force grids to a single column and reduce internal card padding */
+  .project-grid,
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .project-card,
+  .skill-category {
+    padding: 1.5rem;
+  }
+
+  /* 4. Scale down the Contact Section */
+  .contact-title {
+    font-size: 2.4rem;
+  }
+
+  .contact-text {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .big-cta {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+  }
+
+  .social-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  /* 5. Adjust Loader size */
+  .loading-logo {
+    font-size: 2rem;
+  }
+}
