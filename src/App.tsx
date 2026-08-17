@@ -115,9 +115,9 @@ export default function App() {
               <h3>Shamba Shape Up</h3>
               <p>An digital platform connecting local farmers directly with commercial buyers to secure fair market prices for their produce.</p>
               <div className="tech-stack">
-                <span>Next.js</span><span>Google Maps API</span><span>Africa's Talking</span>
+                <span>Type</span><span>Google Maps API</span><span>Africa's Talking</span>
               </div>
-              <a href="https://qeja-yetu.vercel.app/" className="project-link" target="_blank" rel="noopener noreferrer">
+              <a href="https://sudoapt-getvickie.github.io/Shamba-Shape-UP-/" className="project-link" target="_blank" rel="noopener noreferrer">
                 View Live Site →
               </a>
             </div>
