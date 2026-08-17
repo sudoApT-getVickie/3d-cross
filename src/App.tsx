@@ -108,6 +108,21 @@ export default function App() {
             </div>
           </FadeInSection>
 
+          
+          {/* 4. Shamba Shape Up (New Addition) */}
+          <FadeInSection delay={800}>
+            <div className="project-card">
+              <h3>Shamba Shape Up</h3>
+              <p>An digital platform connecting local farmers directly with commercial buyers to secure fair market prices for their produce.</p>
+              <div className="tech-stack">
+                <span>Next.js</span><span>Google Maps API</span><span>Africa's Talking</span>
+              </div>
+              <a href="https://qeja-yetu.vercel.app/" className="project-link" target="_blank" rel="noopener noreferrer">
+                View Live Site →
+              </a>
+            </div>
+          </FadeInSection>
+
         </div>
       </section>
 
